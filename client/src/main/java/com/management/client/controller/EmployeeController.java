@@ -1,5 +1,7 @@
 package com.management.client.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.management.client.service.EmployeeService;
 import com.management.client.vo.ClockInVo;
 import com.management.client.vo.common.Result;
@@ -113,11 +115,12 @@ public class EmployeeController {
      * @param userId userId
      * @return ClockInVo
      */
-    @GetMapping("/getWorkList/{userId}")
-    public Result getWorkList(@PathVariable Integer userId) {
+    @GetMapping("/getWorkList/{userId}/{pageNum}/{pageSize}")
+    public Result<PageInfo<ClockInVo>> getWorkList(@PathVariable Integer userId,@PathVariable Integer pageNum, @PathVariable Integer pageSize) {
         try {
+            PageHelper.startPage(pageNum,pageSize);
             List<ClockInVo> list = employeeService.getWorkList(userId);
-            return new Result<>().success(list);
+            return new Result<>().success(new PageInfo<>(list));
         } catch (Exception e) {
             log.info(e.getMessage());
             return new Result<>().fail("fail" + e.getMessage());
