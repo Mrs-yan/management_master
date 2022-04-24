@@ -38,4 +38,7 @@ public class ClockInVo {
     @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     private Date createTime;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm",timezone = "GMT+8")
+    private Date clockTime;
+
 }

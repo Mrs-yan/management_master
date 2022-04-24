@@ -80,6 +80,7 @@ public class EmployeeController {
                     .build();
             System.out.println(createTime);
             ClockInVo result = employeeService.getClockDetail(clock);
+            result.setClockTime(result.getCreateTime());
             return new Result<>().success(result);
         } catch (Exception e) {
             log.info(e.getMessage());
