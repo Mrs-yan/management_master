@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.management.client.dao.UserDao">
+    <select id="test" resultType="String">
+        select work_type
+        from `user`
+        where id = 1
+    </select>
+
+    <select id="login" parameterType="com.management.client.vo.common.User"
+            resultType="com.management.client.vo.common.User">
+        select id,
+               `name`,
+               telephone_number,
+               sex,
+               work_type,
+               id_card_number,
+               account,
+               password,
+               `role`,
+               work_number,
+               create_time,
+               img
+        from `user`
+        where account = #{account}
+          and password = #{password}
+    </select>
+
+    <select id="getUserById" resultType="com.management.client.vo.common.User">
+        select id,
+               `name`,
+               telephone_number,
+               sex,
+               work_type,
+               id_card_number,
+               account,
+               password,
+               `role`,
+               work_number,
+               create_time,
+               img
+        from `user`
+        where id = #{id}
+    </select>
+
+    <insert id="insert" parameterType="com.management.client.vo.common.User">
+        insert into `user`
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="workNumber != null">
+                work_number,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="name != null">
+                `name`,
+            </if>
+            <if test="telephoneNumber != null">
+                telephone_number,
+            </if>
+            <if test="sex != null">
+                sex,
+            </if>
+            <if test="workType != null">
+                work_type,
+            </if>
+            <if test="idCardNumber != null">
+                id_card_number,
+            </if>
+            <if test="account != null">
+                account,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+            <if test="role != null">
+                `role`,
+            </if>
+            <if test="img != null">
+                img,
+            </if>
+        </trim>
+        <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="workNumber != null">
+                #{workNumber},
+            </if>
+            <if test="createTime != null">
+                #{createTime},
+            </if>
+            <if test="name != null">
+                #{name},
+            </if>
+            <if test="telephoneNumber != null">
+                #{telephoneNumber},
+            </if>
+            <if test="sex != null">
+                #{sex},
+            </if>
+            <if test="workType != null">
+                #{workType},
+            </if>
+            <if test="idCardNumber != null">
+                #{idCardNumber},
+            </if>
+            <if test="account != null">
+                #{account},
+            </if>
+            <if test="password != null">
+                #{password},
+            </if>
+            <if test="role != null">
+                #{role},
+            </if>
+            <if test="img != null">
+                #{img},
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="delete" parameterType="integer">
+        delete
+        from `user`
+        where id = #{id}
+    </delete>
+
+    <update id="update" parameterType="com.management.client.vo.common.User">
+        UPDATE `user`
+        <trim prefix="set" suffixOverrides=",">
+            <if test="name!=null">
+                `name` = #{name},
+            </if>
+            <if test="telephoneNumber!=null">
+                telephone_number = #{telephoneNumber},
+            </if>
+            <if test="sex!=null">
+                sex = #{sex},
+            </if>
+            <if test="workType!=null">
+                work_type = #{workType},
+            </if>
+            <if test="idCardNumber!=null">
+                id_card_number = #{idCardNumber},
+            </if>
+            <if test="account!=null">
+                account = #{account},
+            </if>
+            <if test="password!=null">
+                password = #{password},
+            </if>
+            <if test="role!=null">
+                `role` = #{role},
+            </if>
+            <if test="img!=null">
+                img = #{img},
+            </if>
+        </trim>
+        WHERE id = #{id}
+    </update>
+
+    <select id="getAllUser" resultType="com.management.client.vo.common.User">
+        select id,
+               `name`,
+               telephone_number,
+               sex,
+               work_type,
+               id_card_number,
+               account,
+               password,
+               `role`,
+               work_number,
+               create_time,
+               img
+        from `user`
+    </select>
+
+    <update id="updateImg">
+        update `user`
+        set img = #{img}
+        where id = #{id}
+    </update>
+
+</mapper>

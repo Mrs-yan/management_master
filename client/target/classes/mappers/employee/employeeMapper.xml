@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.management.client.dao.EmployeeDao">
+    <insert id="clockIn">
+        insert into clock_record
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="taskId != null">
+                task_id,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+        </trim>
+        <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="userId != null">
+                #{userId},
+            </if>
+            <if test="taskId != null">
+                #{taskId},
+            </if>
+            <if test="createTime != null">
+                #{createTime},
+            </if>
+            <if test="status != null">
+                #{status},
+            </if>
+            <if test="remark != null">
+                #{remark},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="clockStatus" parameterType="com.management.client.vo.ClockInVo"
+            resultType="com.management.client.vo.ClockInVo">
+        select c.id,
+               c.user_id,
+               c.task_id,
+               c.create_time,
+               c.status,
+               c.remark,
+               t.name as taskName
+        from clock_record c
+                 left join task t on t.id = c.task_id
+        where user_id = #{userId}
+          and DATE_FORMAT(DATE_ADD(#{createTime}, INTERVAL 8 HOUR), '%Y%m%d') =
+              DATE_FORMAT(DATE_ADD(c.create_time, INTERVAL 8 HOUR), '%Y%m%d')
+    </select>
+
+    <select id="getAllClock" resultType="com.management.client.vo.ClockInVo">
+        select id,
+               user_id,
+               task_id,
+               create_time,
+               status,
+               remark
+        from clock_record
+        where user_id = #{userId}
+    </select>
+
+    <select id="getWorkList" resultType="com.management.client.vo.ClockInVo">
+        select c.id,
+               c.user_id,
+               c.task_id,
+               c.create_time,
+               c.status,
+               c.remark,
+               t.name as taskName
+        from clock_record c
+                 left join task t on t.id = c.task_id
+        where c.user_id = #{userId} and c.status='工作'
+    </select>
+
+</mapper>

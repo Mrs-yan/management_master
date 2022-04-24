@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.management.client.dao.EquipmentDao">
+    <insert id="insert" parameterType="com.management.client.vo.EquipmentVo">
+        insert into equipment
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="name != null">
+                `name`,
+            </if>
+            <if test="type != null">
+                `type`,
+            </if>
+            <if test="model != null">
+                model,
+            </if>
+            <if test="price != null">
+                price,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="responsible != null">
+                responsible,
+            </if>
+            <if test="img != null">
+                img,
+            </if>
+            <if test="createBy != null">
+                create_by,
+            </if>
+            <if test="totalRevenue != null">
+                total_revenue,
+            </if>
+            <if test="deleteIs != null">
+                delete_is,
+            </if>
+            <if test="workTime != null">
+                work_time,
+            </if>
+        </trim>
+        <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="name != null">
+                #{name},
+            </if>
+            <if test="type != null">
+                #{type},
+            </if>
+            <if test="model != null">
+                #{model},
+            </if>
+            <if test="price != null">
+                #{price},
+            </if>
+            <if test="createTime != null">
+                #{createTime},
+            </if>
+            <if test="responsible != null">
+                #{responsible},
+            </if>
+            <if test="img != null">
+                #{img},
+            </if>
+            <if test="createBy != null">
+                #{createBy},
+            </if>
+            <if test="totalRevenue != null">
+                #{totalRevenue},
+            </if>
+            <if test="deleteIs != null">
+                #{deleteIs},
+            </if>
+            <if test="workTime != null">
+                #{workTime},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="delete" parameterType="Integer">
+        update equipment
+        set delete_is = 1
+        where id = #{id}
+    </update>
+
+    <update id="update" parameterType="com.management.client.vo.EquipmentVo">
+        UPDATE equipment
+        <trim prefix="set" suffixOverrides=",">
+            <if test="name != null">
+                `name` = #{name},
+            </if>
+            <if test="type != null">
+                `type` = #{type},
+            </if>
+            <if test="model != null">
+                model = #{model},
+            </if>
+            <if test="price != null">
+                price = #{price},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="responsible != null">
+                responsible = #{responsible},
+            </if>
+            <if test="img != null">
+                img = #{img},
+            </if>
+            <if test="createBy != null">
+                create_by = #{createBy},
+            </if>
+            <if test="totalRevenue != null">
+                total_revenue = #{totalRevenue},
+            </if>
+            <if test="deleteIs != null">
+                delete_is = #{deleteIs},
+            </if>
+            <if test="workTime != null">
+                work_time = #{workTime},
+            </if>
+        </trim>
+        WHERE id = #{id}
+    </update>
+
+    <select id="getEquipmentById" parameterType="integer" resultType="com.management.client.vo.EquipmentVo">
+        select id,
+               `name`,
+               `type`,
+               model,
+               price,
+               create_time,
+               responsible,
+               img,
+               create_by,
+               total_revenue,
+               delete_is,
+               work_time
+        from equipment
+        where id = #{id}
+    </select>
+
+    <select id="getAll" resultType="com.management.client.vo.EquipmentVo">
+        select id,
+               `name`,
+               `type`,
+               model,
+               price,
+               create_time,
+               responsible,
+               img,
+               create_by,
+               total_revenue,
+               delete_is,
+               work_time
+        from equipment
+        where delete_is = 0
+    </select>
+
+    <update id="updateImg">
+        update equipment
+        set img = #{img}
+        where id = #{id}
+    </update>
+
+</mapper>

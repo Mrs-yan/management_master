@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.management.client.dao.FinancialDao">
+    <insert id="addFinancial" parameterType="com.management.client.vo.FinancialVo">
+        insert into financial
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="money != null">
+                money,
+            </if>
+            <if test="type != null">
+                `type`,
+            </if>
+            <if test="describe != null">
+                `describe`,
+            </if>
+            <if test="taskId != null">
+                task_id,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="createBy != null">
+                create_by,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="money != null">
+                #{money},
+            </if>
+            <if test="type != null">
+                #{type},
+            </if>
+            <if test="describe != null">
+                #{describe},
+            </if>
+            <if test="taskId != null">
+                #{taskId},
+            </if>
+            <if test="remark != null">
+                #{remark},
+            </if>
+            <if test="createBy != null">
+                #{createBy},
+            </if>
+            <if test="createTime != null">
+                #{createTime},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="getFinancialList" resultType="com.management.client.vo.FinancialVo">
+        select f.id,
+               f.money,
+               f.`type`,
+               f.`describe`,
+               f.task_id,
+               f.remark,
+               f.create_by,
+               f.create_time,
+               t.name as taskName
+        from financial f
+                 left join task t on f.task_id = t.id
+        order by f.create_time DESC
+    </select>
+
+    <delete id="deleteFinancial" parameterType="integer">
+        delete
+        from financial
+        where id = #{id}
+    </delete>
+
+    <select id="getFinancialTotal" parameterType="com.management.client.vo.FinancialDataVo" resultType="double">
+        select ifnull(sum(money), 0)
+        from financial
+        where `type` = #{type}
+          and create_time between #{startTime} and #{endTime}
+    </select>
+
+    <select id="getEmployeeSpend" parameterType="com.management.client.vo.FinancialDataVo" resultType="double">
+        select ifnull(sum(money), 0)
+        from spend_data
+        where `spend_type` = #{type}
+          and create_time between #{startTime} and #{endTime}
+          and status = 1
+    </select>
+
+    <select id="getNotPassSpend" parameterType="com.management.client.vo.FinancialDataVo" resultType="double">
+        select ifnull(sum(money), 0)
+        from spend_data
+        where create_time between #{startTime} and #{endTime}
+          and status = 2
+    </select>
+</mapper>

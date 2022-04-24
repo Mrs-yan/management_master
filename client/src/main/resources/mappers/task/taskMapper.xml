@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.management.client.dao.TaskDao">
+    <insert id="insert" parameterType="com.management.client.vo.TaskVo">
+        insert into task
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="name != null">
+                `name`,
+            </if>
+            <if test="customerId != null">
+                customer_id,
+            </if>
+            <if test="equipmentId != null">
+                equipment_id,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="type != null">
+                `type`,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="scheduledStartTime != null">
+                scheduled_start_time,
+            </if>
+            <if test="actualStartTime != null">
+                actual_start_time,
+            </if>
+            <if test="endTime != null">
+                end_time,
+            </if>
+            <if test="createBy != null">
+                create_by,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="name != null">
+                #{name},
+            </if>
+            <if test="customerId != null">
+                #{customerId},
+            </if>
+            <if test="equipmentId != null">
+                #{equipmentId},
+            </if>
+            <if test="address != null">
+                #{address},
+            </if>
+            <if test="type != null">
+                #{type},
+            </if>
+            <if test="status != null">
+                #{status},
+            </if>
+            <if test="remark != null">
+                #{remark},
+            </if>
+            <if test="scheduledStartTime != null">
+                #{scheduledStartTime},
+            </if>
+            <if test="actualStartTime != null">
+                #{actualStartTime},
+            </if>
+            <if test="endTime != null">
+                #{endTime},
+            </if>
+            <if test="createBy != null">
+                #{createBy},
+            </if>
+            <if test="createTime != null">
+                #{createTime},
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="delete" parameterType="Integer">
+        update task
+        set delete_is = 1
+        where id = #{id}
+    </delete>
+
+    <update id="update" parameterType="com.management.client.vo.TaskVo">
+        UPDATE task
+        <trim prefix="set" suffixOverrides=",">
+            <if test="name != null">
+                `name` = #{name},
+            </if>
+            <if test="customerId != null">
+                customer_id = #{customerId},
+            </if>
+            <if test="equipmentId != null">
+                equipment_id = #{equipmentId},
+            </if>
+            <if test="address != null">
+                address = #{address},
+            </if>
+            <if test="type != null">
+                `type` = #{type},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="remark != null">
+                remark = #{remark},
+            </if>
+            <if test="scheduledStartTime != null">
+                scheduled_start_time = #{scheduledStartTime},
+            </if>
+            <if test="actualStartTime != null">
+                actual_start_time = #{actualStartTime},
+            </if>
+            <if test="endTime != null">
+                end_time = #{endTime},
+            </if>
+            <if test="createBy != null">
+                create_by = #{createBy},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="deleteIs != null">
+                delete_is = #{deleteIs},
+            </if>
+        </trim>
+        WHERE id = #{id}
+    </update>
+
+    <select id="getTaskById" parameterType="Integer" resultType="com.management.client.vo.TaskVo">
+        select t.id,
+               t.`name`,
+               t.customer_id,
+               t.equipment_id,
+               t.address,
+               t.`type`,
+               t.`status`,
+               t.remark,
+               t.scheduled_start_time,
+               t.actual_start_time,
+               t.end_time,
+               t.create_by,
+               t.create_time,
+               t.delete_is,
+               cus.`name` as customerName,
+               equ.`name` as equipmentName
+        from task t
+                 left join customer cus on cus.id = t.customer_id
+                 left join equipment equ on equ.id = t.equipment_id
+        where t.id = #{id}
+    </select>
+
+    <select id="getTaskList" resultType="com.management.client.vo.TaskVo">
+        select t.id,
+               t.`name`,
+               t.customer_id,
+               t.equipment_id,
+               t.address,
+               t.`type`,
+               t.`status`,
+               t.remark,
+               t.scheduled_start_time,
+               t.actual_start_time,
+               t.end_time,
+               t.create_by,
+               t.create_time,
+               t.delete_is,
+               cus.`name` as customerName,
+               equ.`name` as equipmentName
+        from task t
+                 left join customer cus on cus.id = t.customer_id
+                 left join equipment equ on equ.id = t.equipment_id
+        where t.delete_is = 0
+        ORDER BY t.status
+    </select>
+</mapper>

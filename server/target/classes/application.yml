@@ -1,0 +1,14 @@
+server:
+  port: 8001
+
+spring:
+  application:
+    name: smart-server
+
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: false
+    fetch-registry: false

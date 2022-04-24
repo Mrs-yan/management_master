@@ -1,0 +1,50 @@
+server:
+  port: 8101
+
+spring:
+  application:
+    name: smart-client
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: P3aTWyEHjXBaW6Cy
+    url: jdbc:mysql://124.71.223.181:3306/management_sys?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true
+
+#eureka:
+#  instance:
+#    hostname: localhost
+#  client:
+#    fetch-registry: true
+#    register-with-eureka: true
+#    service-url:
+#      defaultZone: http://localhost:8001/eureka/
+
+# 配置pagehelper参数
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
+mybatis:
+  #配置POJO对象地址
+  type-aliases-package: com.management.client.vo.*
+  #mapper文件扫描地址
+  mapper-locations: classpath*:/mappers/**/*.xml
+  #数据表的字段下划线转驼峰开启
+  configuration:
+    map-underscore-to-camel-case: true
+
+#图片上传本地地址
+#upload:
+#  url: E:/ManagementImg/
+#  ip: http://124.71.223.181:81/
+
+#图片上传服务器地址
+upload:
+  url: /www/wwwroot/lovefyforever.xyz/
+  ip: http://124.71.223.181:81/
+
+
+
+
