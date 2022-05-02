@@ -84,7 +84,7 @@
                t.name as taskName
         from clock_record c
                  left join task t on t.id = c.task_id
-        where c.user_id = #{userId} and c.status='工作'
+        where c.user_id = #{userId} and c.status='打卡'
     </select>
 
 </mapper>
