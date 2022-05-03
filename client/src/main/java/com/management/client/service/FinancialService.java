@@ -38,4 +38,14 @@ public interface FinancialService {
      * @return FinancialDataVo
      */
     FinancialDataVo getFinancialData(FinancialDataVo financial);
+
+    /**
+     *
+     * 查询财务数据详细
+     * getFinancialById
+     *
+     * @param id
+     * @return FinancialVo
+     */
+    FinancialVo getFinancialById(Integer id);
 }

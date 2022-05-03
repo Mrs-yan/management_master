@@ -74,6 +74,21 @@
         order by f.create_time DESC
     </select>
 
+    <select id="getFinancialById" parameterType="integer" resultType="com.management.client.vo.FinancialVo">
+        select f.id,
+               f.money,
+               f.`type`,
+               f.`describe`,
+               f.task_id,
+               f.remark,
+               f.create_by,
+               f.create_time,
+               t.name as taskName
+        from financial f
+                 left join task t on f.task_id = t.id
+        where f.id = #{id}
+    </select>
+
     <delete id="deleteFinancial" parameterType="integer">
         delete
         from financial

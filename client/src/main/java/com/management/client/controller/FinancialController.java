@@ -94,4 +94,22 @@ public class FinancialController {
             return new Result<>().fail("fail" + e.getMessage());
         }
     }
+
+    /**
+     * getFinancialById
+     * 获取财务报表数据
+     *
+     * @param getFinancialById
+     * @return
+     */
+    @GetMapping("/getFinancialById/{id}")
+    public Result getFinancialById(@PathVariable Integer id) {
+        try {
+            FinancialVo result = financialService.getFinancialById(id);
+            return new Result().success(result);
+        } catch (Exception e) {
+            log.info(e.getMessage());
+            return new Result<>().fail("fail" + e.getMessage());
+        }
+    }
 }

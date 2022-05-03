@@ -67,4 +67,9 @@ public class FinancialServiceImpl implements FinancialService {
                 .totalRevenue(totalRevenue)
                 .build();
     }
+
+    @Override
+    public FinancialVo getFinancialById(Integer id) {
+        return financialDao.getFinancialById(id);
+    }
 }

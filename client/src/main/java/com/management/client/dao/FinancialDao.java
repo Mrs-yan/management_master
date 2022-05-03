@@ -58,4 +58,14 @@ public interface FinancialDao {
      * @return Integer
      */
     Double getNotPassSpend(FinancialDataVo financial);
+
+    /**
+     *
+     * 查询财务数据详细
+     * getFinancialById
+     *
+     * @param id
+     * @return FinancialVo
+     */
+    FinancialVo getFinancialById(Integer id);
 }
