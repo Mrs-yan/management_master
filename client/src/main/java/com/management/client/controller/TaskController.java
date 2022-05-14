@@ -106,10 +106,10 @@ public class TaskController {
      * @return
      */
     @GetMapping("/getAllTask/{pageNum}/{pageSize}")
-    public Result<PageInfo<TaskVo>> getAllTask(@PathVariable Integer pageNum, @PathVariable Integer pageSize) {
+    public Result<PageInfo<TaskVo>> getAllTask(@PathVariable Integer pageNum, @PathVariable Integer pageSize,TaskVo task) {
         try {
             PageHelper.startPage(pageNum, pageSize);
-            List<TaskVo> Tasks = taskService.getTaskList();
+            List<TaskVo> Tasks = taskService.getTaskList(task);
             return new Result<>().success(new PageInfo<>(Tasks));
         } catch (Exception e) {
             log.info(e.getMessage());

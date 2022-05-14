@@ -16,7 +16,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void insert(CustomerVo customer) {
-        List<CustomerVo> customers = customerDao.getAllCustomer();
+        List<CustomerVo> customers = customerDao.getAllCustomer(new CustomerVo());
         if (customers.stream().anyMatch(VO -> VO.getName().equals(customer.getName()))) {
             throw new IllegalArgumentException("该客户已经存在！请重新核对");
         }
@@ -32,7 +32,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public void update(CustomerVo customer) {
         CustomerVo old = customerDao.getCustomerById(customer.getId());
-        List<CustomerVo> customers = customerDao.getAllCustomer();
+        List<CustomerVo> customers = customerDao.getAllCustomer(new CustomerVo());
         if (customers.stream().anyMatch(VO -> VO.getName().equals(customer.getName())) && !old.getName().equals(customer.getName())) {
             throw new IllegalArgumentException("该客户已经存在！请重新更换名称");
         }
@@ -45,7 +45,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public List<CustomerVo> getAllCustomer() {
-        return customerDao.getAllCustomer();
+    public List<CustomerVo> getAllCustomer(CustomerVo customer) {
+        return customerDao.getAllCustomer(customer);
     }
 }

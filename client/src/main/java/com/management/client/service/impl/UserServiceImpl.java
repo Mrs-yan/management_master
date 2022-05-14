@@ -40,7 +40,8 @@ public class UserServiceImpl implements UserService {
     }
 
     private void check(User user) {
-        List<User> users = userDao.getAllUser();
+        User us = new User();
+        List<User> users = userDao.getAllUser(us);
         if (users.stream().anyMatch(User -> User.getAccount().equals(user.getAccount()))) {
             throw new IllegalArgumentException("该账号已经存在请重新输入");
         }
@@ -49,7 +50,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void update(User user) {
         User OldUser = userDao.getUserById(user.getId());
-        List<User> users = userDao.getAllUser();
+        List<User> users = userDao.getAllUser(new User());
         if (users.stream().anyMatch(User -> User.getAccount().equals(user.getAccount())) && !user.getAccount().equals(OldUser.getAccount())) {
             throw new IllegalArgumentException("该账号已经存在请重新输入");
         }
@@ -67,7 +68,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getAllUser() {
-        return userDao.getAllUser();
+    public List<User> getAllUser(User user) {
+        return userDao.getAllUser(user);
     }
 }

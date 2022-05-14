@@ -44,5 +44,5 @@ public interface CustomerService {
      *
      * @return
      */
-    List<CustomerVo> getAllCustomer();
+    List<CustomerVo> getAllCustomer(CustomerVo customer);
 }

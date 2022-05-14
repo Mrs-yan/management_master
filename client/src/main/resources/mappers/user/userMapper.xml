@@ -179,6 +179,14 @@
                create_time,
                img
         from `user`
+       <where>
+           <if test="name != null">
+               AND `name` like CONCAT("%",#{name},"%")
+           </if>
+           <if test="workNumber != null">
+               AND `work_number` like CONCAT("%",#{workNumber},"%")
+           </if>
+       </where>
     </select>
 
     <update id="updateImg">

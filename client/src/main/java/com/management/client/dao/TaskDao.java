@@ -47,5 +47,5 @@ public interface TaskDao {
      *
      * @return TaskVo
      */
-    List<TaskVo> getTaskList();
+    List<TaskVo> getTaskList(TaskVo task);
 }

@@ -47,5 +47,5 @@ public interface CustomerDao {
      *
      * @return
      */
-    List<CustomerVo> getAllCustomer();
+    List<CustomerVo> getAllCustomer(CustomerVo customer);
 }

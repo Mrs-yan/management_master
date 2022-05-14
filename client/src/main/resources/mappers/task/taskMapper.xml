@@ -184,7 +184,15 @@
         from task t
                  left join customer cus on cus.id = t.customer_id
                  left join equipment equ on equ.id = t.equipment_id
-        where t.delete_is = 0
-        ORDER BY t.status
+        <where>
+            t.delete_is = 0
+            <if test="name != null">
+                AND t.`name` like CONCAT("%",#{name},"%")
+            </if>
+            <if test="status != null">
+                AND t.`status` = #{status}
+            </if>
+        </where>
+        ORDER BY t.status,t.create_time DESC
     </select>
 </mapper>

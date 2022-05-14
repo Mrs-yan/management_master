@@ -122,10 +122,10 @@ public class UserController {
      * @return
      */
     @GetMapping("/getAllUser/{pageNum}/{pageSize}")
-    public Result<PageInfo<User>> getAllUser(@PathVariable Integer pageNum, @PathVariable Integer pageSize) {
+    public Result<PageInfo<User>> getAllUser(@PathVariable Integer pageNum, @PathVariable Integer pageSize,User user) {
         try {
             PageHelper.startPage(pageNum, pageSize);
-            List<User> users = userService.getAllUser();
+            List<User> users = userService.getAllUser(user);
             return new Result<>().success(new PageInfo<>(users));
         } catch (Exception e) {
             log.info(e.getMessage());

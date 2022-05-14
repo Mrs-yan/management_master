@@ -57,7 +57,7 @@ public class CommonServiceImpl implements CommonService {
 
     @Override
     public List<TaskVo> getTaskList() {
-        return taskDao.getTaskList();
+        return taskDao.getTaskList(new TaskVo());
     }
 
     @Override
@@ -67,6 +67,6 @@ public class CommonServiceImpl implements CommonService {
 
     @Override
     public List<CustomerVo> getCustomerList() {
-        return customerDao.getAllCustomer();
+        return customerDao.getAllCustomer(new CustomerVo());
     }
 }

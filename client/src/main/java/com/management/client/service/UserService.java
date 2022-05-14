@@ -44,7 +44,7 @@ public interface UserService {
      *
      * @return
      */
-    List<User> getAllUser();
+    List<User> getAllUser(User user);
 
     /**
      * 单独更新图片

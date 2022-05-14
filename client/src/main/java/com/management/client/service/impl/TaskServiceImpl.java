@@ -16,7 +16,7 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public void insert(TaskVo task) {
-        List<TaskVo> taskVos = taskDao.getTaskList();
+        List<TaskVo> taskVos = taskDao.getTaskList(new TaskVo());
         if (taskVos.stream().anyMatch(VO -> VO.getName().equals(task.getName()))) {
             throw new IllegalArgumentException("该任务名已经存在!");
         }
@@ -32,7 +32,7 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public void update(TaskVo task) {
         TaskVo old = taskDao.getTaskById(task.getId());
-        List<TaskVo> taskVos = taskDao.getTaskList();
+        List<TaskVo> taskVos = taskDao.getTaskList(new TaskVo());
         if (taskVos.stream().anyMatch(VO -> VO.getName().equals(task.getName())) && !old.getName().equals(task.getName())) {
             throw new IllegalArgumentException("该任务名已经存在!");
         }
@@ -50,7 +50,7 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public List<TaskVo> getTaskList() {
-        return taskDao.getTaskList();
+    public List<TaskVo> getTaskList(TaskVo task) {
+        return taskDao.getTaskList(task);
     }
 }

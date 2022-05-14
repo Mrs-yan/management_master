@@ -101,10 +101,10 @@ public class CustomerController {
      * @return
      */
     @GetMapping("/getAllCustomer/{pageNum}/{pageSize}")
-    public Result<PageInfo<CustomerVo>> getAllCustomer(@PathVariable Integer pageNum, @PathVariable Integer pageSize) {
+    public Result<PageInfo<CustomerVo>> getAllCustomer(@PathVariable Integer pageNum, @PathVariable Integer pageSize,CustomerVo customer) {
         try {
             PageHelper.startPage(pageNum, pageSize);
-            List<CustomerVo> customers = customerService.getAllCustomer();
+            List<CustomerVo> customers = customerService.getAllCustomer(customer);
             return new Result<>().success(new PageInfo<>(customers));
         } catch (Exception e) {
             log.info(e.getMessage());
