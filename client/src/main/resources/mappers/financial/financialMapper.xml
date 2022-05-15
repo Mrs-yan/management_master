@@ -61,17 +61,28 @@
 
     <select id="getFinancialList" resultType="com.management.client.vo.FinancialVo">
         select f.id,
-               f.money,
-               f.`type`,
-               f.`describe`,
-               f.task_id,
-               f.remark,
-               f.create_by,
-               f.create_time,
-               t.name as taskName
+        f.money,
+        f.`type`,
+        f.`describe`,
+        f.task_id,
+        f.remark,
+        f.create_by,
+        f.create_time,
+        t.name as taskName
         from financial f
-                 left join task t on f.task_id = t.id
+        left join task t on f.task_id = t.id
+        <where>
+            <if test="type != null">
+                AND f.type like CONCAT("%",#{type},"%")
+            </if>
+            <if test="startTime != null">
+                <if test="endTime != null">
+                    and f.create_time between #{startTime} and #{endTime}
+                </if>
+            </if>
+        </where>
         order by f.create_time DESC
+
     </select>
 
     <select id="getFinancialById" parameterType="integer" resultType="com.management.client.vo.FinancialVo">

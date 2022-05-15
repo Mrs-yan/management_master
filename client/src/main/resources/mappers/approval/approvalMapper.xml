@@ -59,19 +59,27 @@
         </trim>
     </insert>
 
-    <select id="getApplyListByUser" parameterType="Integer" resultType="com.management.client.vo.EconomicApplyVo">
+    <select id="getApplyListByUser" resultType="com.management.client.vo.EconomicApplyVo">
         select s.id,
-               s.spend_type,
-               s.money,
-               s.task_id,
-               s.remark,
-               s.proposer_id,
-               s.create_time,
-               s.status,
-               t.name as taskName
+        s.spend_type,
+        s.money,
+        s.task_id,
+        s.remark,
+        s.proposer_id,
+        s.create_time,
+        s.status,
+        t.name as taskName
         from spend_data s
-                 left join task t on s.task_id = t.id
-        where proposer_id = #{id}
+        left join task t on s.task_id = t.id
+        <where>
+            and proposer_id = #{id}
+            <if test="spendType != null">
+                AND s.spend_type like CONCAT("%",#{spendType},"%")
+            </if>
+            <if test="status != null">
+                AND s.status = #{status}
+            </if>
+        </where>
         order by s.create_time DESC
     </select>
 
@@ -100,22 +108,31 @@
     </select>
 
     <select id="getALLApplyList" resultType="com.management.client.vo.EconomicApplyVo">
-        select s.id,
-               s.spend_type,
-               s.money,
-               s.task_id,
-               s.remark,
-               s.proposer_id,
-               s.create_time,
-               s.status,
-               s.approver_id,
-               t.name  as taskName,
-               u.name  as proposerName,
-               us.name as approverName
+        select
+        s.id,
+        s.spend_type,
+        s.money,
+        s.task_id,
+        s.remark,
+        s.proposer_id,
+        s.create_time,
+        s.status,
+        s.approver_id,
+        t.name as taskName,
+        u.name as proposerName,
+        us.name as approverName
         from spend_data s
-                 left join task t on s.task_id = t.id
-                 left join `user` u on u.id = s.proposer_id
-                 left join `user` us on us.id = s.approver_id
+        left join task t on s.task_id = t.id
+        left join `user` u on u.id = s.proposer_id
+        left join `user` us on us.id = s.approver_id
+        <where>
+            <if test="spendType != null">
+                AND s.spend_type like CONCAT("%",#{spendType},"%")
+            </if>
+            <if test="status != null">
+                AND s.status = #{status}
+            </if>
+        </where>
         order by s.create_time DESC
     </select>
 </mapper>

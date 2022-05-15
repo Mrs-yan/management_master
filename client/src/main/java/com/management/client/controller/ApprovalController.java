@@ -50,10 +50,11 @@ public class ApprovalController {
      * @return
      */
     @GetMapping("/getApplyListByUser/{proposerId}/{pageNum}/{pageSize}")
-    public Result<PageInfo<EconomicApplyVo>> getApplyListByUser(@PathVariable Integer proposerId, @PathVariable Integer pageNum, @PathVariable Integer pageSize) {
+    public Result<PageInfo<EconomicApplyVo>> getApplyListByUser(@PathVariable Integer proposerId, @PathVariable Integer pageNum, @PathVariable Integer pageSize, EconomicApplyVo economicApply) {
         try {
             PageHelper.startPage(pageNum, pageSize);
-            List<EconomicApplyVo> list = approvalService.getApplyListByUser(proposerId);
+            economicApply.setId(proposerId);
+            List<EconomicApplyVo> list = approvalService.getApplyListByUser(economicApply);
             return new Result().success(new PageInfo<>(list));
         } catch (Exception e) {
             log.info(e.getMessage());
@@ -113,10 +114,10 @@ public class ApprovalController {
      * @return
      */
     @GetMapping("/getALLApplyList/{pageNum}/{pageSize}")
-    public Result<List<EconomicApplyVo>> getALLApplyList(@PathVariable Integer pageNum, @PathVariable Integer pageSize) {
+    public Result<List<EconomicApplyVo>> getALLApplyList(@PathVariable Integer pageNum, @PathVariable Integer pageSize, EconomicApplyVo economicApply) {
         try {
             PageHelper.startPage(pageNum, pageSize);
-            List<EconomicApplyVo> list = approvalService.getALLApplyList();
+            List<EconomicApplyVo> list = approvalService.getALLApplyList(economicApply);
             return new Result().success(new PageInfo<>(list));
         } catch (Exception e) {
             log.info(e.getMessage());

@@ -22,7 +22,7 @@ public interface FinancialDao {
      *
      * @return
      */
-    List<FinancialVo> getFinancialList();
+    List<FinancialVo> getFinancialList(FinancialVo financial);
 
     /**
      * deleteFinancial
@@ -60,7 +60,6 @@ public interface FinancialDao {
     Double getNotPassSpend(FinancialDataVo financial);
 
     /**
-     *
      * 查询财务数据详细
      * getFinancialById
      *

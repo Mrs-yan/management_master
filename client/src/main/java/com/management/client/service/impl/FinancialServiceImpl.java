@@ -5,8 +5,10 @@ import com.management.client.service.FinancialService;
 import com.management.client.vo.FinancialDataVo;
 import com.management.client.vo.FinancialVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -22,8 +24,21 @@ public class FinancialServiceImpl implements FinancialService {
     }
 
     @Override
-    public List<FinancialVo> getFinancialList() {
-        return financialDao.getFinancialList();
+    public List<FinancialVo> getFinancialList(FinancialVo financial) {
+//        if (financial.getStartTime() != null && financial.getEndTime() != null){
+//            Calendar calendar = Calendar.getInstance();
+//            calendar.setTime(financial.getStartTime());
+//            calendar.add(Calendar.HOUR_OF_DAY,-8);
+//            financial.setStartTime(calendar.getTime());
+//
+//            calendar.setTime(financial.getEndTime());
+//            calendar.add(Calendar.HOUR_OF_DAY,-8);
+//            financial.setEndTime(calendar.getTime());
+//            System.out.println(financial.getStartTime());
+//        }
+
+
+        return financialDao.getFinancialList(financial);
     }
 
     @Override

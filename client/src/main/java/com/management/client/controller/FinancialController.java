@@ -48,10 +48,11 @@ public class FinancialController {
      * @return
      */
     @GetMapping("/getFinancialList/{pageNum}/{pageSize}")
-    public Result<List<FinancialVo>> getFinancialList(@PathVariable Integer pageNum, @PathVariable Integer pageSize) {
+    public Result<List<FinancialVo>> getFinancialList(@PathVariable Integer pageNum, @PathVariable Integer pageSize, FinancialVo financial) {
         try {
             PageHelper.startPage(pageNum, pageSize);
-            List<FinancialVo> result = financialService.getFinancialList();
+            List<FinancialVo> result = financialService.getFinancialList(financial);
+            System.out.println(financial.getStartTime());
             return new Result().success(new PageInfo<>(result));
         } catch (Exception e) {
             log.info(e.getMessage());

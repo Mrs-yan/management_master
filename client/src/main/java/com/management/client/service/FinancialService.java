@@ -20,7 +20,7 @@ public interface FinancialService {
      *
      * @return
      */
-    List<FinancialVo> getFinancialList();
+    List<FinancialVo> getFinancialList(FinancialVo financial);
 
     /**
      * deleteFinancial
@@ -40,7 +40,6 @@ public interface FinancialService {
     FinancialDataVo getFinancialData(FinancialDataVo financial);
 
     /**
-     *
      * 查询财务数据详细
      * getFinancialById
      *

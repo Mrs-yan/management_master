@@ -20,8 +20,8 @@ public class ApprovalServiceImpl implements ApprovalService {
     }
 
     @Override
-    public List<EconomicApplyVo> getApplyListByUser(Integer id) {
-        return approvalDao.getApplyListByUser(id);
+    public List<EconomicApplyVo> getApplyListByUser(EconomicApplyVo economicApplyVo) {
+        return approvalDao.getApplyListByUser(economicApplyVo);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class ApprovalServiceImpl implements ApprovalService {
     }
 
     @Override
-    public List<EconomicApplyVo> getALLApplyList() {
-        return approvalDao.getALLApplyList();
+    public List<EconomicApplyVo> getALLApplyList(EconomicApplyVo economicApply) {
+        return approvalDao.getALLApplyList(economicApply);
     }
 }

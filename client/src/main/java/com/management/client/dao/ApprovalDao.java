@@ -21,7 +21,7 @@ public interface ApprovalDao {
      * @param id id
      * @return
      */
-    List<EconomicApplyVo> getApplyListByUser(Integer id);
+    List<EconomicApplyVo> getApplyListByUser(EconomicApplyVo economicApply);
 
     /**
      * 操作申请
@@ -47,5 +47,5 @@ public interface ApprovalDao {
      *
      * @return EconomicApplyVo
      */
-    List<EconomicApplyVo> getALLApplyList();
+    List<EconomicApplyVo> getALLApplyList(EconomicApplyVo economicApply);
 }
