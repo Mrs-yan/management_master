@@ -142,7 +142,7 @@
                total_revenue,
                delete_is,
                work_time,
-               use_status
+               status
         from equipment
         where id = #{id}
     </select>
@@ -160,7 +160,7 @@
                total_revenue,
                delete_is,
                work_time,
-               use_status
+               status
         from equipment
         where delete_is = 0
     </select>
@@ -201,7 +201,7 @@
 
     <update id="updateUseStatus" >
         update equipment
-        set use_status = #{status}
+        set status = #{status}
         where id = #{id}
     </update>
 </mapper>

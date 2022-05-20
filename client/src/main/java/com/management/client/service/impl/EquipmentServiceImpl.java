@@ -77,8 +77,14 @@ public class EquipmentServiceImpl implements EquipmentService {
     public EquipmentVo getEquipmentById(Integer id) {
         long hour = 1000 * 60 * 60;
         long timeVariance = 0;
+        String result = "";
         Double totalRevenue = equipmentDao.getTotalRevenue(id);
-        String result = totalRevenue + "元";
+        if (totalRevenue != null){
+            result = totalRevenue + "元";
+        }else {
+            result = "0元";
+        }
+
         EquipmentVo equipment = equipmentDao.getEquipmentById(id);
         equipment.setTotalRevenue(result);
         List<TaskVo> list = equipmentDao.getEquipmentWithTask(id);

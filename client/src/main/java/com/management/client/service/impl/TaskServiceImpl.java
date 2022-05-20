@@ -25,7 +25,7 @@ public class TaskServiceImpl implements TaskService {
         this.chekEmpty(task);
         if (task.getEquipmentId() != null){
             EquipmentVo equipment = equipmentDao.getEquipmentById(task.getEquipmentId());
-            if (equipment.getUseStatus() == 1){
+            if (equipment.getStatus() == 1){
                 throw new IllegalArgumentException("该设备已经在使用！请选择其他设备");
             }
         }
@@ -55,7 +55,7 @@ public class TaskServiceImpl implements TaskService {
         TaskVo old = taskDao.getTaskById(task.getId());
         if (task.getEquipmentId() != old.getEquipmentId()){
             EquipmentVo equipment = equipmentDao.getEquipmentById(task.getEquipmentId());
-            if (equipment.getUseStatus() == 1){
+            if (equipment.getStatus() == 1){
                 throw new IllegalArgumentException("该设备以及在使用！请选择其他设备");
             }
         }
