@@ -53,10 +53,10 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     void chekEmpty(CustomerVo customer) {
-        if (customer.getName() == null) {
+        if (customer.getName() == null || customer.getName().equals("")) {
             throw new IllegalArgumentException("客户名称不能为空");
         }
-        if (customer.getSuperintendent() == null) {
+        if (customer.getSuperintendent() == null || customer.getSuperintendent().equals("")) {
             throw new IllegalArgumentException("负责人不能为空！");
         }
     }

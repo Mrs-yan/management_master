@@ -86,16 +86,16 @@ public class TaskServiceImpl implements TaskService {
     }
 
     void chekEmpty(TaskVo task){
-        if (task.getName() == null){
+        if (task.getName() == null || task.getName().equals("")){
             throw new IllegalArgumentException("任务名称不能为空！");
         }
-        if (task.getEquipmentId() == null){
+        if (task.getEquipmentId() == null || task.getEquipmentId().equals("")){
             throw new IllegalArgumentException("请选择设备！");
         }
-        if (task.getCustomerId() == null){
+        if (task.getCustomerId() == null || task.getCustomerId().equals("")){
             throw new IllegalArgumentException("请选择客户！");
         }
-        if (task.getStatus() == null){
+        if (task.getStatus() == null || task.getStatus().equals("")){
             throw new IllegalArgumentException("任务状态不能为空！");
         }
     }

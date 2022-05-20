@@ -54,10 +54,10 @@ public class BulletinServiceImpl implements BulletinService {
     }
 
     void chekEmpty(BulletinVo bulletin) {
-        if (bulletin.getName() == null) {
+        if (bulletin.getName() == null || bulletin.getName().equals("")) {
             throw new IllegalArgumentException("公告名称不能为空");
         }
-        if (bulletin.getContent() == null) {
+        if (bulletin.getContent() == null || bulletin.getContent().equals("")) {
             throw new IllegalArgumentException("公告内容不能为空！");
         }
     }

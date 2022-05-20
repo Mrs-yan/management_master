@@ -60,13 +60,13 @@ public class UserServiceImpl implements UserService {
     }
 
     void chekEmpty(User user) {
-        if (user.getRole() == null) {
+        if (user.getRole() == null || user.getRole().equals("")) {
             throw new IllegalArgumentException("角色不能为空");
         }
-        if (user.getAccount() == null) {
+        if (user.getAccount() == null || user.getAccount().equals("")) {
             throw new IllegalArgumentException("账号不能为空");
         }
-        if (user.getPassword() == null) {
+        if (user.getPassword() == null || user.getPassword().equals("")) {
             throw new IllegalArgumentException("密码不能为空");
         }
     }

@@ -18,10 +18,10 @@ public class ApprovalServiceImpl implements ApprovalService {
 
     @Override
     public void submitApplication(EconomicApplyVo economicApply) {
-        if (economicApply.getSpendType() == null) {
+        if (economicApply.getSpendType() == null || economicApply.getSpendType().equals("")) {
             throw new IllegalArgumentException("花费类型不能为空");
         }
-        if (economicApply.getMoney() == null) {
+        if (economicApply.getMoney() == null || economicApply.getMoney().equals("")) {
             throw new IllegalArgumentException("金额不能为空");
         }
         if (isNumber(economicApply.getMoney())) {

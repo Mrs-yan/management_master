@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 public class EquipmentServiceImpl implements EquipmentService {
@@ -24,9 +26,23 @@ public class EquipmentServiceImpl implements EquipmentService {
     @Override
     public void insert(EquipmentVo equipment) {
         this.chekEmpty(equipment);
-        equipment.setCreateTime(new Date());
-        chek(equipment);
-        equipmentDao.insert(equipment);
+        if (isNumber(equipment.getPrice())){
+            equipment.setCreateTime(new Date());
+            chek(equipment);
+            equipmentDao.insert(equipment);
+        }else {
+            throw new IllegalArgumentException("价格只能为数字类型！");
+        }
+
+    }
+
+    public static boolean isNumber(String str) {
+        Pattern pattern = Pattern.compile("-?[0-9]+.?[0-9]+");
+        Matcher isNum = pattern.matcher(str);
+        if (!isNum.matches()) {
+            return false;
+        }
+        return true;
     }
 
     private void chek(EquipmentVo equipment) {
@@ -44,12 +60,17 @@ public class EquipmentServiceImpl implements EquipmentService {
     @Override
     public void update(EquipmentVo equipment) {
         this.chekEmpty(equipment);
-        EquipmentVo old = equipmentDao.getEquipmentById(equipment.getId());
-        List<EquipmentVo> equipments = equipmentDao.getAll();
-        if (equipments.stream().anyMatch(VO -> VO.getName().equals(equipment.getName())) && !old.getName().equals(equipment.getName())) {
-            throw new IllegalArgumentException("该设备名称已经存在，请重新输入！");
+        if (isNumber(equipment.getPrice())){
+            EquipmentVo old = equipmentDao.getEquipmentById(equipment.getId());
+            List<EquipmentVo> equipments = equipmentDao.getAll();
+            if (equipments.stream().anyMatch(VO -> VO.getName().equals(equipment.getName())) && !old.getName().equals(equipment.getName())) {
+                throw new IllegalArgumentException("该设备名称已经存在，请重新输入！");
+            }
+            equipmentDao.update(equipment);
+        }else {
+            throw new IllegalArgumentException("价格只能为数字类型！");
         }
-        equipmentDao.update(equipment);
+
     }
 
     @Override
@@ -74,13 +95,13 @@ public class EquipmentServiceImpl implements EquipmentService {
     }
 
     void chekEmpty(EquipmentVo equipment) {
-        if (equipment.getName() == null) {
+        if (equipment.getName() == null || equipment.getName().equals("")) {
             throw new IllegalArgumentException("设备名称不能为空！");
         }
-        if (equipment.getType() == null) {
+        if (equipment.getType() == null || equipment.getType().equals("")) {
             throw new IllegalArgumentException("设备类型不能为空！");
         }
-        if (equipment.getModel() == null) {
+        if (equipment.getModel() == null || equipment.getModel().equals("")) {
             throw new IllegalArgumentException("设备型号不能为空！");
         }
     }
