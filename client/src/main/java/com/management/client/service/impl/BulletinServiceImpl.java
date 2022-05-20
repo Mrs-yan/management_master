@@ -3,6 +3,7 @@ package com.management.client.service.impl;
 import com.management.client.dao.BulletinDao;
 import com.management.client.service.BulletinService;
 import com.management.client.vo.BulletinVo;
+import com.management.client.vo.CustomerVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,7 @@ public class BulletinServiceImpl implements BulletinService {
 
     @Override
     public void insert(BulletinVo bulletin) {
+        chekEmpty(bulletin);
         List<BulletinVo> bulletinVos = bulletinDao.getBulletinList();
         if (bulletinVos.stream().anyMatch(Vo -> Vo.getName().equals(bulletin.getName()))) {
             throw new IllegalArgumentException("该公告名称已经存在");
@@ -32,6 +34,7 @@ public class BulletinServiceImpl implements BulletinService {
 
     @Override
     public void update(BulletinVo bulletin) {
+        chekEmpty(bulletin);
         List<BulletinVo> bulletinVos = bulletinDao.getBulletinList();
         BulletinVo old = bulletinDao.getBulletinById(bulletin.getId());
         if (bulletinVos.stream().anyMatch(Vo -> Vo.getName().equals(bulletin.getName())) && !old.getName().equals(bulletin.getName())) {
@@ -48,5 +51,14 @@ public class BulletinServiceImpl implements BulletinService {
     @Override
     public List<BulletinVo> getBulletinList() {
         return bulletinDao.getBulletinList();
+    }
+
+    void chekEmpty(BulletinVo bulletin) {
+        if (bulletin.getName() == null) {
+            throw new IllegalArgumentException("公告名称不能为空");
+        }
+        if (bulletin.getContent() == null) {
+            throw new IllegalArgumentException("公告内容不能为空！");
+        }
     }
 }

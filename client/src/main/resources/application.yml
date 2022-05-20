@@ -43,7 +43,7 @@ mybatis:
 #图片上传服务器地址
 upload:
   url: /www/wwwroot/lovefyforever.xyz/
-  ip: http://124.71.223.181:81/
+  ip: https://yhqimg.ilikestudy.cn/
 
 
 

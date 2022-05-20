@@ -22,7 +22,7 @@ public class EconomicApplyVo {
     private String spendType;
 
     // 金额
-    private Integer money;
+    private String money;
 
     // 任务id
     private Integer taskId;

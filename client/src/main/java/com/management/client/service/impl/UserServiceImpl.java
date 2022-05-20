@@ -32,6 +32,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void insert(User user) {
+        this.chekEmpty(user);
         check(user);
         user.setCreateTime(new Date());
         String workNumber = System.currentTimeMillis() + "";
@@ -49,12 +50,25 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void update(User user) {
+        this.chekEmpty(user);
         User OldUser = userDao.getUserById(user.getId());
         List<User> users = userDao.getAllUser(new User());
         if (users.stream().anyMatch(User -> User.getAccount().equals(user.getAccount())) && !user.getAccount().equals(OldUser.getAccount())) {
             throw new IllegalArgumentException("该账号已经存在请重新输入");
         }
         userDao.update(user);
+    }
+
+    void chekEmpty(User user) {
+        if (user.getRole() == null) {
+            throw new IllegalArgumentException("角色不能为空");
+        }
+        if (user.getAccount() == null) {
+            throw new IllegalArgumentException("账号不能为空");
+        }
+        if (user.getPassword() == null) {
+            throw new IllegalArgumentException("密码不能为空");
+        }
     }
 
     @Override

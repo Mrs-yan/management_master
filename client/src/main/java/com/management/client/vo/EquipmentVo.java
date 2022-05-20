@@ -51,4 +51,8 @@ public class EquipmentVo {
 
     // 工作时间
     private String workTime;
+
+    // 使用状态
+    private Integer useStatus;
+
 }

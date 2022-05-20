@@ -17,7 +17,7 @@ public class FinancialVo {
     private Integer id;
 
     // 金额
-    private Integer money;
+    private String money;
 
     // 类型 收入/支出
     private String type;
@@ -46,6 +46,4 @@ public class FinancialVo {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date endTime;
-
-
 }

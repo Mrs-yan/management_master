@@ -5,12 +5,12 @@ import com.management.client.service.FinancialService;
 import com.management.client.vo.FinancialDataVo;
 import com.management.client.vo.FinancialVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 public class FinancialServiceImpl implements FinancialService {
@@ -20,24 +20,26 @@ public class FinancialServiceImpl implements FinancialService {
     @Override
     public void addFinancial(FinancialVo financialVo) {
         financialVo.setCreateTime(new Date());
-        financialDao.addFinancial(financialVo);
+        String result = financialVo.getMoney();
+        if (isNumber(result)) {
+            financialDao.addFinancial(financialVo);
+        } else {
+            throw new IllegalArgumentException("金额必须为数字！请重新输入");
+        }
+
+    }
+
+    public static boolean isNumber(String str) {
+        Pattern pattern = Pattern.compile("-?[0-9]+.?[0-9]+");
+        Matcher isNum = pattern.matcher(str);
+        if (!isNum.matches()) {
+            return false;
+        }
+        return true;
     }
 
     @Override
     public List<FinancialVo> getFinancialList(FinancialVo financial) {
-//        if (financial.getStartTime() != null && financial.getEndTime() != null){
-//            Calendar calendar = Calendar.getInstance();
-//            calendar.setTime(financial.getStartTime());
-//            calendar.add(Calendar.HOUR_OF_DAY,-8);
-//            financial.setStartTime(calendar.getTime());
-//
-//            calendar.setTime(financial.getEndTime());
-//            calendar.add(Calendar.HOUR_OF_DAY,-8);
-//            financial.setEndTime(calendar.getTime());
-//            System.out.println(financial.getStartTime());
-//        }
-
-
         return financialDao.getFinancialList(financial);
     }
 

@@ -3,6 +3,8 @@ package com.management.client.service.impl;
 import com.management.client.dao.EmployeeDao;
 import com.management.client.service.EmployeeService;
 import com.management.client.vo.ClockInVo;
+import com.management.client.vo.EquipmentVo;
+import com.management.client.vo.common.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -56,4 +58,16 @@ public class EmployeeServiceImpl implements EmployeeService {
         });
         return maps;
     }
+
+//    void chekEmpty(User user){
+//        if (user.getRole() == null){
+//            throw new IllegalArgumentException("角色不能为空");
+//        }
+//        if (user.getAccount() == null){
+//            throw new IllegalArgumentException("账号不能为空");
+//        }
+//        if (user.getPassword() == null){
+//            throw new IllegalArgumentException("密码不能为空");
+//        }
+//    }
 }

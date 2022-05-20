@@ -54,6 +54,7 @@ public class TaskVo {
     private Date actualStartTime;
 
     // 结束时间
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date endTime;
 
     // 创建时间

@@ -141,7 +141,8 @@
                create_by,
                total_revenue,
                delete_is,
-               work_time
+               work_time,
+               use_status
         from equipment
         where id = #{id}
     </select>
@@ -158,7 +159,8 @@
                create_by,
                total_revenue,
                delete_is,
-               work_time
+               work_time,
+               use_status
         from equipment
         where delete_is = 0
     </select>
@@ -169,4 +171,37 @@
         where id = #{id}
     </update>
 
+    <select id="getTotalRevenue" resultType="double">
+        SELECT SUM(f.money)
+        FROM financial f
+                 JOIN task t on f.task_id = t.id
+        where t.equipment_id = #{id}
+          and f.type = '收入'
+    </select>
+
+    <select id="getEquipmentWithTask" resultType="com.management.client.vo.TaskVo">
+        select id,
+               `name`,
+               customer_id,
+               equipment_id,
+               address,
+               `type`,
+               status,
+               remark,
+               scheduled_start_time,
+               actual_start_time,
+               end_time,
+               create_by,
+               create_time,
+               delete_is
+        from task
+        where equipment_id = #{id}
+          and delete_is = 0
+    </select>
+
+    <update id="updateUseStatus" >
+        update equipment
+        set use_status = #{status}
+        where id = #{id}
+    </update>
 </mapper>
