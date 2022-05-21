@@ -29,7 +29,6 @@ public class TaskServiceImpl implements TaskService {
             }
         }
 
-
         List<TaskVo> taskVos = taskDao.getTaskList(new TaskVo());
         if (taskVos.stream().anyMatch(VO -> VO.getName().equals(task.getName()))) {
             throw new IllegalArgumentException("该任务名已经存在!");
@@ -52,27 +51,39 @@ public class TaskServiceImpl implements TaskService {
     public void update(TaskVo task) {
         this.chekEmpty(task);
         TaskVo old = taskDao.getTaskById(task.getId());
-        if (task.getEquipmentId() != old.getEquipmentId()){
-            EquipmentVo equipment = equipmentDao.getEquipmentById(task.getEquipmentId());
-            if (equipment.getStatus() == 1){
-                throw new IllegalArgumentException("该设备以及在使用！请选择其他设备");
-            }
-        }
         List<TaskVo> taskVos = taskDao.getTaskList(new TaskVo());
         if (taskVos.stream().anyMatch(VO -> VO.getName().equals(task.getName())) && !old.getName().equals(task.getName())) {
             throw new IllegalArgumentException("该任务名已经存在!");
         }
-        if (task.getStatus() == 1) {
-            task.setActualStartTime(new Date());
-        } else if (task.getStatus() == 3) {
-            task.setEndTime(new Date());
-        }
-        taskDao.update(task);
-        if (task.getStatus() == 3){
-            EquipmentVo equipment = equipmentDao.getEquipmentById(task.getEquipmentId());
-            equipmentDao.updateUseStatus(0,equipment.getId());
-        }
 
+        if (task.getEquipmentId() != old.getEquipmentId()){
+            EquipmentVo equipment = equipmentDao.getEquipmentById(task.getEquipmentId());
+            if (equipment.getStatus() == 1){
+                throw new IllegalArgumentException("该设备以及在使用！请选择其他设备");
+            }else {
+                if (task.getStatus() == 1) {
+                    task.setActualStartTime(new Date());
+                } else if (task.getStatus() == 3) {
+                    task.setEndTime(new Date());
+                }
+                taskDao.update(task);
+                equipmentDao.updateUseStatus(0, old.getEquipmentId());
+                if (task.getStatus() != 3){
+                   equipmentDao.updateUseStatus(1,task.getEquipmentId());
+                }
+            }
+        }else {
+            if (task.getStatus() == 1) {
+                task.setActualStartTime(new Date());
+            } else if (task.getStatus() == 3) {
+                task.setEndTime(new Date());
+            }
+            taskDao.update(task);
+            if (task.getStatus() == 3){
+                equipmentDao.updateUseStatus(0,task.getEquipmentId());
+            }
+
+        }
     }
 
     @Override
