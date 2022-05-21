@@ -8,12 +8,10 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 /**
- *
  * EquipmentDao
  *
  * @author 严虹钱
- * @since  2022/3/27
- *
+ * @since 2022/3/27
  */
 
 
@@ -92,5 +90,5 @@ public interface EquipmentDao {
      *
      * @param status
      */
-    void updateUseStatus(@Param("status") Integer status,@Param("id") Integer id);
+    void updateUseStatus(@Param("status") Integer status, @Param("id") Integer id);
 }

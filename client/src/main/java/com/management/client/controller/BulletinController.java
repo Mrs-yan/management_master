@@ -13,12 +13,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- *
  * BulletinController
  *
  * @author 严虹钱
  * @since 2022/4/18
- *
  */
 
 

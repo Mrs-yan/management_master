@@ -18,12 +18,10 @@ import java.util.List;
 
 
 /**
- *
  * TaskController
  *
  * @author 严虹钱
- * @since  2022/4/7
- *
+ * @since 2022/4/7
  */
 
 @Slf4j
@@ -116,7 +114,7 @@ public class TaskController {
      * @return
      */
     @GetMapping("/getAllTask/{pageNum}/{pageSize}")
-    public Result<PageInfo<TaskVo>> getAllTask(@PathVariable Integer pageNum, @PathVariable Integer pageSize,TaskVo task) {
+    public Result<PageInfo<TaskVo>> getAllTask(@PathVariable Integer pageNum, @PathVariable Integer pageSize, TaskVo task) {
         try {
             PageHelper.startPage(pageNum, pageSize);
             List<TaskVo> Tasks = taskService.getTaskList(task);

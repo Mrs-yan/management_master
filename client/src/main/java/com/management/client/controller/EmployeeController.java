@@ -19,12 +19,10 @@ import java.util.Map;
 
 
 /**
- *
  * EmployeeController
  *
  * @author 严虹钱
- * @since  2022/4/15
- *
+ * @since 2022/4/15
  */
 
 
@@ -126,9 +124,9 @@ public class EmployeeController {
      * @return ClockInVo
      */
     @GetMapping("/getWorkList/{userId}/{pageNum}/{pageSize}")
-    public Result<PageInfo<ClockInVo>> getWorkList(@PathVariable Integer userId,@PathVariable Integer pageNum, @PathVariable Integer pageSize) {
+    public Result<PageInfo<ClockInVo>> getWorkList(@PathVariable Integer userId, @PathVariable Integer pageNum, @PathVariable Integer pageSize) {
         try {
-            PageHelper.startPage(pageNum,pageSize);
+            PageHelper.startPage(pageNum, pageSize);
             List<ClockInVo> list = employeeService.getWorkList(userId);
             return new Result<>().success(new PageInfo<>(list));
         } catch (Exception e) {
@@ -136,7 +134,6 @@ public class EmployeeController {
             return new Result<>().fail("fail" + e.getMessage());
         }
     }
-
 
 
     // 解析前台字符时间

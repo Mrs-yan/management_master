@@ -13,12 +13,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- *
  * CustomerController
  *
  * @author 严虹钱
- * @since  2022/3/30
- *
+ * @since 2022/3/30
  */
 
 
@@ -111,7 +109,7 @@ public class CustomerController {
      * @return
      */
     @GetMapping("/getAllCustomer/{pageNum}/{pageSize}")
-    public Result<PageInfo<CustomerVo>> getAllCustomer(@PathVariable Integer pageNum, @PathVariable Integer pageSize,CustomerVo customer) {
+    public Result<PageInfo<CustomerVo>> getAllCustomer(@PathVariable Integer pageNum, @PathVariable Integer pageSize, CustomerVo customer) {
         try {
             PageHelper.startPage(pageNum, pageSize);
             List<CustomerVo> customers = customerService.getAllCustomer(customer);

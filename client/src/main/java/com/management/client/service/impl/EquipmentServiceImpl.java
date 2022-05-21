@@ -14,12 +14,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- *
  * EquipmentServiceImpl
  *
  * @author 严虹钱
- * @since  2022/3/27
- *
+ * @since 2022/3/27
  */
 
 @Service
@@ -35,11 +33,11 @@ public class EquipmentServiceImpl implements EquipmentService {
     @Override
     public void insert(EquipmentVo equipment) {
         this.chekEmpty(equipment);
-        if (isNumber(equipment.getPrice())){
+        if (isNumber(equipment.getPrice())) {
             equipment.setCreateTime(new Date());
             chek(equipment);
             equipmentDao.insert(equipment);
-        }else {
+        } else {
             throw new IllegalArgumentException("价格只能为数字类型！");
         }
 
@@ -69,14 +67,14 @@ public class EquipmentServiceImpl implements EquipmentService {
     @Override
     public void update(EquipmentVo equipment) {
         this.chekEmpty(equipment);
-        if (isNumber(equipment.getPrice())){
+        if (isNumber(equipment.getPrice())) {
             EquipmentVo old = equipmentDao.getEquipmentById(equipment.getId());
             List<EquipmentVo> equipments = equipmentDao.getAll();
             if (equipments.stream().anyMatch(VO -> VO.getName().equals(equipment.getName())) && !old.getName().equals(equipment.getName())) {
                 throw new IllegalArgumentException("该设备名称已经存在，请重新输入！");
             }
             equipmentDao.update(equipment);
-        }else {
+        } else {
             throw new IllegalArgumentException("价格只能为数字类型！");
         }
 
@@ -88,9 +86,9 @@ public class EquipmentServiceImpl implements EquipmentService {
         long timeVariance = 0;
         String result = "";
         Double totalRevenue = equipmentDao.getTotalRevenue(id);
-        if (totalRevenue != null){
+        if (totalRevenue != null) {
             result = totalRevenue + "元";
-        }else {
+        } else {
             result = "0元";
         }
 

@@ -6,12 +6,10 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 /**
- *
  * UserService
  *
  * @author 严虹钱
- * @since  2022/3/25
- *
+ * @since 2022/3/25
  */
 
 public interface UserService {

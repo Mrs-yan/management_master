@@ -6,12 +6,10 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
 /**
- *
  * ApprovalDao
  *
  * @author 严虹钱
- * @since  2022/4/26
- *
+ * @since 2022/4/26
  */
 
 

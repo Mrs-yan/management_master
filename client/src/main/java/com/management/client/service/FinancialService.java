@@ -6,12 +6,10 @@ import com.management.client.vo.FinancialVo;
 import java.util.List;
 
 /**
- *
  * FinancialService
  *
  * @author 严虹钱
- * @since  2022/4/26
- *
+ * @since 2022/4/26
  */
 
 public interface FinancialService {

@@ -17,12 +17,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *
  * UserController
  *
  * @author 严虹钱
- * @since  2022/3/25
- *
+ * @since 2022/3/25
  */
 
 @Configuration
@@ -40,12 +38,12 @@ public class UserController {
     @GetMapping("/test")
     public Result test() {
         Map map = new HashMap();
-        map.put("2022-01-02","请假");
-        map.put("2022-01-03","上班");
-        map.put("2022-01-04","请假");
-        map.put("2022-01-05","上班");
-        map.put("2022-01-06","请假");
-        map.put("2022-01-07","上班");
+        map.put("2022-01-02", "请假");
+        map.put("2022-01-03", "上班");
+        map.put("2022-01-04", "请假");
+        map.put("2022-01-05", "上班");
+        map.put("2022-01-06", "请假");
+        map.put("2022-01-07", "上班");
         return new Result().success(map);
         //return userDao.test();
     }
@@ -131,7 +129,7 @@ public class UserController {
      * @return
      */
     @GetMapping("/getAllUser/{pageNum}/{pageSize}")
-    public Result<PageInfo<User>> getAllUser(@PathVariable Integer pageNum, @PathVariable Integer pageSize,User user) {
+    public Result<PageInfo<User>> getAllUser(@PathVariable Integer pageNum, @PathVariable Integer pageSize, User user) {
         try {
             PageHelper.startPage(pageNum, pageSize);
             List<User> users = userService.getAllUser(user);

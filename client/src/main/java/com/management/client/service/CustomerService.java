@@ -5,12 +5,10 @@ import com.management.client.vo.CustomerVo;
 import java.util.List;
 
 /**
- *
  * CustomerService
  *
  * @author 严虹钱
- * @since  2022/3/30
- *
+ * @since 2022/3/30
  */
 
 public interface CustomerService {

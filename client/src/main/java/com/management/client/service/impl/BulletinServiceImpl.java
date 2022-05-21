@@ -10,12 +10,10 @@ import java.util.Date;
 import java.util.List;
 
 /**
- *
  * BulletinServiceImpl
  *
  * @author 严虹钱
- * @since  2022/4/18
- *
+ * @since 2022/4/18
  */
 
 @Service

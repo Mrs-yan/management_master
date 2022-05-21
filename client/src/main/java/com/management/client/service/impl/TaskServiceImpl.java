@@ -12,12 +12,10 @@ import java.util.Date;
 import java.util.List;
 
 /**
- *
  * TaskServiceImpl
  *
  * @author 严虹钱
- * @since  2022/4/7
- *
+ * @since 2022/4/7
  */
 
 @Service
@@ -31,9 +29,9 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public void insert(TaskVo task) {
         this.chekEmpty(task);
-        if (task.getEquipmentId() != null){
+        if (task.getEquipmentId() != null) {
             EquipmentVo equipment = equipmentDao.getEquipmentById(task.getEquipmentId());
-            if (equipment.getStatus() == 1){
+            if (equipment.getStatus() == 1) {
                 throw new IllegalArgumentException("该设备已经在使用！请选择其他设备");
             }
         }
@@ -50,7 +48,7 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public void delete(Integer id) {
         TaskVo task = taskDao.getTaskById(id);
-        if (task.getEquipmentId() != null){
+        if (task.getEquipmentId() != null) {
             equipmentDao.updateUseStatus(0, task.getEquipmentId());
         }
         taskDao.delete(id);
@@ -65,11 +63,11 @@ public class TaskServiceImpl implements TaskService {
             throw new IllegalArgumentException("该任务名已经存在!");
         }
 
-        if (task.getEquipmentId() != old.getEquipmentId()){
+        if (task.getEquipmentId() != old.getEquipmentId()) {
             EquipmentVo equipment = equipmentDao.getEquipmentById(task.getEquipmentId());
-            if (equipment.getStatus() == 1){
+            if (equipment.getStatus() == 1) {
                 throw new IllegalArgumentException("该设备以及在使用！请选择其他设备");
-            }else {
+            } else {
                 if (task.getStatus() == 1) {
                     task.setActualStartTime(new Date());
                 } else if (task.getStatus() == 3) {
@@ -77,19 +75,19 @@ public class TaskServiceImpl implements TaskService {
                 }
                 taskDao.update(task);
                 equipmentDao.updateUseStatus(0, old.getEquipmentId());
-                if (task.getStatus() != 3){
-                   equipmentDao.updateUseStatus(1,task.getEquipmentId());
+                if (task.getStatus() != 3) {
+                    equipmentDao.updateUseStatus(1, task.getEquipmentId());
                 }
             }
-        }else {
+        } else {
             if (task.getStatus() == 1) {
                 task.setActualStartTime(new Date());
             } else if (task.getStatus() == 3) {
                 task.setEndTime(new Date());
             }
             taskDao.update(task);
-            if (task.getStatus() == 3){
-                equipmentDao.updateUseStatus(0,task.getEquipmentId());
+            if (task.getStatus() == 3) {
+                equipmentDao.updateUseStatus(0, task.getEquipmentId());
             }
 
         }
@@ -105,17 +103,17 @@ public class TaskServiceImpl implements TaskService {
         return taskDao.getTaskList(task);
     }
 
-    void chekEmpty(TaskVo task){
-        if (task.getName() == null || task.getName().equals("")){
+    void chekEmpty(TaskVo task) {
+        if (task.getName() == null || task.getName().equals("")) {
             throw new IllegalArgumentException("任务名称不能为空！");
         }
-        if (task.getEquipmentId() == null || task.getEquipmentId().equals("")){
+        if (task.getEquipmentId() == null || task.getEquipmentId().equals("")) {
             throw new IllegalArgumentException("请选择设备！");
         }
-        if (task.getCustomerId() == null || task.getCustomerId().equals("")){
+        if (task.getCustomerId() == null || task.getCustomerId().equals("")) {
             throw new IllegalArgumentException("请选择客户！");
         }
-        if (task.getStatus() == null || task.getStatus().equals("")){
+        if (task.getStatus() == null || task.getStatus().equals("")) {
             throw new IllegalArgumentException("任务状态不能为空！");
         }
     }
