@@ -5,7 +5,14 @@ package com.management.client.vo.common;
  *
  * @param <T>
  */
-
+/**
+ *
+ * Result
+ *
+ * @author 严虹钱
+ * @since  2022/3/23
+ *
+ */
 public class Result<T> {
     private Integer code;
     private String msg;

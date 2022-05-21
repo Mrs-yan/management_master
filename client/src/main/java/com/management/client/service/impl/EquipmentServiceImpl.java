@@ -13,6 +13,15 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ *
+ * EquipmentServiceImpl
+ *
+ * @author 严虹钱
+ * @since  2022/3/27
+ *
+ */
+
 @Service
 public class EquipmentServiceImpl implements EquipmentService {
     @Autowired

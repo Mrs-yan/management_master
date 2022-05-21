@@ -3,12 +3,20 @@ package com.management.client.service.impl;
 import com.management.client.dao.BulletinDao;
 import com.management.client.service.BulletinService;
 import com.management.client.vo.BulletinVo;
-import com.management.client.vo.CustomerVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+
+/**
+ *
+ * BulletinServiceImpl
+ *
+ * @author 严虹钱
+ * @since  2022/4/18
+ *
+ */
 
 @Service
 public class BulletinServiceImpl implements BulletinService {

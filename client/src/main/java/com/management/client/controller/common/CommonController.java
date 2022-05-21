@@ -13,6 +13,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
+/**
+ * CommonController
+ *
+ * @author 严虹钱
+ * @since 2022/4/28
+ */
 @Slf4j
 @Controller
 @ResponseBody

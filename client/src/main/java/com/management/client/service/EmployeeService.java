@@ -5,6 +5,15 @@ import com.management.client.vo.ClockInVo;
 import java.util.List;
 import java.util.Map;
 
+/**
+ *
+ * EmployeeService
+ *
+ * @author 严虹钱
+ * @since  2022/4/15
+ *
+ */
+
 public interface EmployeeService {
     /**
      * 打卡

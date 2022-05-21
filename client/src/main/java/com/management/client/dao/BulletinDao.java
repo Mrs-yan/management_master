@@ -5,6 +5,16 @@ import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
+
+/**
+ *
+ * BulletinDao
+ *
+ * @author 严虹钱
+ * @since  2022/4/18
+ *
+ */
+
 @Mapper
 public interface BulletinDao {
 

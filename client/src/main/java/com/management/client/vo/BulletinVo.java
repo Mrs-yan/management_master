@@ -8,6 +8,15 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
+
+/**
+ *
+ * BulletinVo
+ *
+ * @author 严虹钱
+ * @since  2022/4/18
+ *
+ */
 @Data
 @Builder
 @AllArgsConstructor

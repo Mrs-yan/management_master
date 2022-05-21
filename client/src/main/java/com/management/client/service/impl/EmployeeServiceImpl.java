@@ -3,8 +3,6 @@ package com.management.client.service.impl;
 import com.management.client.dao.EmployeeDao;
 import com.management.client.service.EmployeeService;
 import com.management.client.vo.ClockInVo;
-import com.management.client.vo.EquipmentVo;
-import com.management.client.vo.common.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +11,15 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+/**
+ *
+ * EmployeeServiceImpl
+ *
+ * @author 严虹钱
+ * @since  2022/4/15
+ *
+ */
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {

@@ -9,7 +9,12 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 
 /**
- * 申请vo
+ *
+ * EconomicApplyVo
+ *
+ * @author 严虹钱
+ * @since 2022/4/26
+ *
  */
 @Data
 @Builder

@@ -8,6 +8,12 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
+/**
+ * FinancialDataVo
+ *
+ * @author 严虹钱
+ * @since 2022/3/25
+ */
 @Data
 @Builder
 @AllArgsConstructor

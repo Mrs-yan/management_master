@@ -5,6 +5,15 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Date;
 
+/**
+ *
+ * User
+ *
+ * @author 严虹钱
+ * @since  2022/3/25
+ *
+ */
+
 @Data
 @Builder
 @AllArgsConstructor

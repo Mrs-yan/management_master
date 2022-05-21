@@ -12,7 +12,12 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 /**
- * 设备VO
+ *
+ * EquipmentVo
+ *
+ * @author 严虹钱
+ * @since 2022/3/27
+ *
  */
 public class EquipmentVo {
 

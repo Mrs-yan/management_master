@@ -12,6 +12,14 @@ import lombok.NoArgsConstructor;
 /**
  * 用于分页存储参数
  */
+/**
+ *
+ * PageVo
+ *
+ * @author 严虹钱
+ * @since  2022/3/25
+ *
+ */
 public class PageVo {
     // 第几页
     private Integer pageNum;

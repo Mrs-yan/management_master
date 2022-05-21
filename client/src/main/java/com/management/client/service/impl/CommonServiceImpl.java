@@ -20,6 +20,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * CommonServiceImpl
+ *
+ * @author 严虹钱
+ * @since 2022/4/28
+ */
+
 @Service
 public class CommonServiceImpl implements CommonService {
     @Value("${upload.url}")

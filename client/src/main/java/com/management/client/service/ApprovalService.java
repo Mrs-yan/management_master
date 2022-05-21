@@ -4,6 +4,15 @@ import com.management.client.vo.EconomicApplyVo;
 
 import java.util.List;
 
+/**
+ *
+ * ApprovalService
+ *
+ * @author 严虹钱
+ * @since  2022/4/26
+ *
+ */
+
 public interface ApprovalService {
     /**
      * 提交申请

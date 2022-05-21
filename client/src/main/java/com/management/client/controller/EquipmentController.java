@@ -12,6 +12,16 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
+/**
+ *
+ * EquipmentController
+ *
+ * @author 严虹钱
+ * @since  2022/3/27
+ *
+ */
+
 @Slf4j
 @Controller
 @ResponseBody

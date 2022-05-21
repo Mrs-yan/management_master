@@ -4,6 +4,15 @@ import com.management.client.vo.EquipmentVo;
 
 import java.util.List;
 
+/**
+ *
+ * EquipmentService
+ *
+ * @author 严虹钱
+ * @since  2022/3/27
+ *
+ */
+
 public interface EquipmentService {
     /**
      * 添加新用户

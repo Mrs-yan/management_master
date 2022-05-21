@@ -9,6 +9,13 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
+/**
+ * FinancialVo
+ *
+ * @author 严虹钱
+ * @since 2022/4/26
+ */
+
 @Data
 @Builder
 @AllArgsConstructor

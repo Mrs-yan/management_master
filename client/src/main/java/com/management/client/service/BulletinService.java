@@ -4,6 +4,15 @@ import com.management.client.vo.BulletinVo;
 
 import java.util.List;
 
+/**
+ *
+ * BulletinService
+ *
+ * @author 严虹钱
+ * @since  2022/4/18
+ *
+ */
+
 public interface BulletinService {
     /**
      * insert

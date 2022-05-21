@@ -6,7 +6,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
-
+/**
+ *
+ * CustomerVo
+ *
+ * @author 严虹钱
+ * @since  2022/3/30
+ *
+ */
 @Data
 @Builder
 @AllArgsConstructor

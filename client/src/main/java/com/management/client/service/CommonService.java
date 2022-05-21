@@ -11,6 +11,13 @@ import java.util.List;
 /**
  * 公共组件服务
  */
+
+/**
+ * CommonService
+ *
+ * @author 严虹钱
+ * @since 2022/4/28
+ */
 public interface CommonService {
 
     /**
