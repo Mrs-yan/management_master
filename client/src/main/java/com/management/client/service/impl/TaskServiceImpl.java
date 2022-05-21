@@ -5,7 +5,6 @@ import com.management.client.dao.TaskDao;
 import com.management.client.service.TaskService;
 import com.management.client.vo.EquipmentVo;
 import com.management.client.vo.TaskVo;
-import com.management.client.vo.common.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -69,10 +68,11 @@ public class TaskServiceImpl implements TaskService {
             task.setEndTime(new Date());
         }
         taskDao.update(task);
-        if (task.getStatus() == 3){
+        if (task.getStatus() == 3 || task.getStatus() == 2){
             EquipmentVo equipment = equipmentDao.getEquipmentById(task.getEquipmentId());
             equipmentDao.updateUseStatus(0,equipment.getId());
         }
+
     }
 
     @Override
