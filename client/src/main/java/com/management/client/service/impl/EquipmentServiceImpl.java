@@ -28,7 +28,7 @@ public class EquipmentServiceImpl implements EquipmentService {
     @Override
     public void delete(Integer id) {
         EquipmentVo equipment = equipmentDao.getEquipmentById(id);
-        if(equipment.getStatus() == 1){
+        if (equipment.getStatus() == 1) {
             throw new IllegalArgumentException("该设备真在使用，无法删除！");
         }
         equipmentDao.delete(id);
