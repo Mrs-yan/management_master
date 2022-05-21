@@ -68,7 +68,7 @@ public class FinancialServiceImpl implements FinancialService {
 
         // 任务支出
         Double taskSpend = 0.0;
-        financial.setType("任务支出");
+        financial.setType("个人预支");
         taskSpend = financialDao.getEmployeeSpend(financial);
         // 审批未通过
         Double approvalFail = 0.0;

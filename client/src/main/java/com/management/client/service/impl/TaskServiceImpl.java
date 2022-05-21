@@ -49,7 +49,7 @@ public class TaskServiceImpl implements TaskService {
     public void delete(Integer id) {
         TaskVo task = taskDao.getTaskById(id);
         if (task.getEquipmentId() != null) {
-            equipmentDao.updateUseStatus(0, task.getEquipmentId());
+            equipmentDao.updateUseStatus(4, task.getEquipmentId());
         }
         taskDao.delete(id);
     }
@@ -74,7 +74,7 @@ public class TaskServiceImpl implements TaskService {
                     task.setEndTime(new Date());
                 }
                 taskDao.update(task);
-                equipmentDao.updateUseStatus(0, old.getEquipmentId());
+                equipmentDao.updateUseStatus(4, old.getEquipmentId());
                 if (task.getStatus() != 3) {
                     equipmentDao.updateUseStatus(1, task.getEquipmentId());
                 }
@@ -87,7 +87,7 @@ public class TaskServiceImpl implements TaskService {
             }
             taskDao.update(task);
             if (task.getStatus() == 3) {
-                equipmentDao.updateUseStatus(0, task.getEquipmentId());
+                equipmentDao.updateUseStatus(4, task.getEquipmentId());
             }
 
         }
