@@ -68,7 +68,7 @@ public class TaskServiceImpl implements TaskService {
             task.setEndTime(new Date());
         }
         taskDao.update(task);
-        if (task.getStatus() == 3 || task.getStatus() == 2){
+        if (task.getStatus() == 3){
             EquipmentVo equipment = equipmentDao.getEquipmentById(task.getEquipmentId());
             equipmentDao.updateUseStatus(0,equipment.getId());
         }
