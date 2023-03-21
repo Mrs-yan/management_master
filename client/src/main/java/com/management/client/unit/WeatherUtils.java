@@ -2,6 +2,7 @@ package com.management.client.unit;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.management.client.vo.WeChatVO;
 import com.management.client.vo.Weather;
 import org.springframework.web.client.RestTemplate;
 
@@ -11,12 +12,12 @@ import java.util.Map;
 
 public class WeatherUtils {
 
-    public static Weather getWeather(){
+    public Weather getWeather(WeChatVO weChat){
         RestTemplate restTemplate = new RestTemplate();
         Map<String,String> map = new HashMap<>();
-        map.put("district_id","530402");
+        map.put("district_id",weChat.getDistrictId());
         map.put("data_type","all");
-        map.put("ak","t5VE6UMKGighZqTEWKyGqNFvjWRzCcxP");
+        map.put("ak",weChat.getAk());//t5VE6UMKGighZqTEWKyGqNFvjWRzCcxP
         String res = restTemplate.getForObject(
                 "https://api.map.baidu.com/weather/v1/?district_id={district_id}&data_type={data_type}&ak={ak}",
                 String.class,

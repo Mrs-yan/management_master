@@ -6,4 +6,35 @@
     <select id="getTemplateId" resultType="string">
         select user_id from wechat_template where status = 1
     </select>
+
+    <select id="getInformation" resultType="string">
+        select detailed from wechat_information where `date` = DATE_FORMAT(#{date},'%Y-%m-%d')
+    </select>
+
+    <insert id="addInformation">
+        insert into wechat_information
+        (
+         `date`,
+         detailed
+        )values (
+            #{date},
+            #{detailed}
+        )
+        ON DUPLICATE KEY UPDATE
+        `date` = values(`date`),
+         detailed = values(detailed)
+    </insert>
+
+    <select id="getWeChatList" resultType="com.management.client.vo.WeChatVO">
+        select
+            id,
+            appId,
+            secret,
+            userId,
+            templateId,
+            ak,
+            districtId
+        from wechat
+        where status = 1
+    </select>
 </mapper>

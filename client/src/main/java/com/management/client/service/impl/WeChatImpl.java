@@ -4,6 +4,7 @@ import com.management.client.unit.CaiHongPiUtils;
 import com.management.client.unit.JiNianRiUtils;
 import com.management.client.unit.WeatherTypeEnum;
 import com.management.client.unit.WeatherUtils;
+import com.management.client.vo.WeChatVO;
 import com.management.client.vo.Weather;
 import me.chanjar.weixin.mp.api.WxMpInMemoryConfigStorage;
 import me.chanjar.weixin.mp.api.WxMpService;
@@ -11,21 +12,22 @@ import me.chanjar.weixin.mp.api.impl.WxMpServiceImpl;
 import me.chanjar.weixin.mp.bean.template.WxMpTemplateData;
 import me.chanjar.weixin.mp.bean.template.WxMpTemplateMessage;
 
+
 public class WeChatImpl {
-    public void push(String uid){
+    public void push(WeChatVO weChat){
         //1，配置
         WxMpInMemoryConfigStorage wxStorage = new WxMpInMemoryConfigStorage();
-        wxStorage.setAppId("wx885c751cbf1a0682");
-        wxStorage.setSecret("8adbca96a78c648cc29eb87dfd116dfc");
+        wxStorage.setAppId(weChat.getAppId());
+        wxStorage.setSecret(weChat.getSecret());
         WxMpService wxMpService = new WxMpServiceImpl();
         wxMpService.setWxMpConfigStorage(wxStorage);
         // 推送消息
         WxMpTemplateMessage templateMessage = WxMpTemplateMessage.builder()
-                .toUser(uid)
-                .templateId("LKtZGgJnHIjLi-VcZMP5psUMtAuZvhhhH6kSeZPoshI")
+                .toUser(weChat.getUserId())
+                .templateId(weChat.getTemplateId())
                 .build();
 
-        Weather weather = WeatherUtils.getWeather();
+        Weather weather = new WeatherUtils().getWeather(weChat);
         templateMessage.addData(new WxMpTemplateData("riqi",weather.getDate() + "  "+ weather.getWeek(),"#00BFFF"));
         templateMessage.addData(new WxMpTemplateData("tianqi",weather.getText_now(),"#c12c1f"));
         templateMessage.addData(new WxMpTemplateData("low",weather.getLow() + "","#173177"));
@@ -35,8 +37,10 @@ public class WeChatImpl {
         templateMessage.addData(new WxMpTemplateData("lianai", JiNianRiUtils.getLianAi()+"","#FF1493"));
         templateMessage.addData(new WxMpTemplateData("shengri",JiNianRiUtils.getBirthday_Jo()+"","#FFA500"));
 
+        templateMessage.addData(new WxMpTemplateData("remark", weChat.getRemark(),"#FF1500"));
+
         String describe = WeatherTypeEnum.A.getWeatherName(weather.getText_now());
-        templateMessage.addData(new WxMpTemplateData("describe",describe,"#00BFFF"));
+        templateMessage.addData(new WxMpTemplateData("describe",describe,"#f5b1aa"));
 
 
         String beizhu = "❤";
@@ -56,6 +60,5 @@ public class WeChatImpl {
             e.printStackTrace();
         }
     }
-
-    }
+}
 

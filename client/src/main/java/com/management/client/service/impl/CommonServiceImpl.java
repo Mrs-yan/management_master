@@ -4,7 +4,7 @@ import com.management.client.dao.CustomerDao;
 import com.management.client.dao.EquipmentDao;
 import com.management.client.dao.TaskDao;
 import com.management.client.service.CommonService;
-import com.management.client.service.EquipmentService;
+import com.management.client.vo.BulletinVo;
 import com.management.client.vo.CustomerVo;
 import com.management.client.vo.EquipmentVo;
 import com.management.client.vo.TaskVo;
@@ -17,6 +17,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -77,3 +78,6 @@ public class CommonServiceImpl implements CommonService {
         return customerDao.getAllCustomer(new CustomerVo());
     }
 }
+
+
+
